@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+	<item name="transparent" type="drawable">#00000000</item>
+    <item name="page_bg" type="drawable">@color/white</item>
+    <item name="clock_sleep_background" type="drawable">@color/COLOR_8</item>
+    
+</resources>

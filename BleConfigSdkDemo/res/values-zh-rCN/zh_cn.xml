@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="demo_name_ble_wifi">BLE配Wi-Fi</string>
+  <string name="demo_name_ap_wifi">AP配Wi-Fi</string>
+  <string name="device_name_z300">RestOn Z300</string>
+  <string name="device_name_z400twb">RestOn Z400TWB</string>
+  <string name="device_name_z400twp">RestOn Z400TWP</string>
+  <string name="step1">STEP 1</string>
+  <string name="step2">STEP 2</string>
+  <string name="step3">STEP 3</string>
+  <string name="select_device">选择设备ID</string>
+  <string name="select_wifi">设备要连接的Wi-Fi</string>
+  <string name="input_wifi_name">输入Wi-Fi名称</string>
+  <string name="input_wifi_psw">输入Wi-Fi密码</string>
+  <string name="pair_wifi">配置Wi-Fi</string>
+  <string name="ap_mode">操作设备进入AP模式</string>
+  <string name="reminder_connect_hotspot1">到系统Wi-Fi页面连接设备热点成功后，返回此页面</string>
+  <string name="select_device_id">选择设备ID（尽量将手机靠近设备）</string>
+  <string name="refresh_deviceid_list">没有找到？点击刷新</string>
+  <string name="connect_device_fail">连接设备失败</string>
+  <string name="reminder_connect_ble">确保手机已打开蓝牙，且与设备的距离不要超过5米</string>
+  <string name="btn_ok">确定</string>
+  <string name="loading_pair_wifi">正在配置Wi-Fi…</string>
+  <string name="reminder_configuration_success">Wi-Fi配置成功</string>
+  <string name="reminder_configuration_fail">Wi-Fi配置失败</string>
+  <string name="reminder_connect_wifi">请先将手机连接上Wi-Fi</string>
+  <string name="reminder_connect_hotspot2">请检查你的手机是否成功连接设备热点</string>
+  <string name="search_device">搜索设备ID</string>
+  <string name="refreshing">正在刷新</string>
+  <string name="device_id">设备ID</string>
+  
+  
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

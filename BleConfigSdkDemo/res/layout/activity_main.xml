@@ -1,0 +1,139 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/page_bg"
+    android:orientation="vertical" >
+
+    <include layout="@layout/header" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginTop="25dp"
+        android:text="@string/step1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_step"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginTop="0dp"
+        android:text="@string/select_device"
+        android:textColor="@color/black_60"
+        android:textSize="@dimen/Title_4" />
+
+    <RelativeLayout
+        android:id="@+id/layout_deviceid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_deviceid"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/device_id"
+            android:textColor="@color/black_50"
+            android:textSize="@dimen/Title_4" />
+
+        <TextView
+            android:id="@+id/tv_deviceid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="6dp"
+            android:drawableRight="@drawable/sdk_icon_rightarrow"
+            android:textColor="@color/black_50"
+            android:textSize="@dimen/Title_4" 
+            android:paddingBottom="15dp"
+        	android:paddingTop="15dp" 
+        	android:gravity="right"
+            />
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginTop="25dp"
+        android:text="@string/step2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/title_step"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginTop="0dp"
+        android:text="@string/select_wifi"
+        android:textColor="@color/black_60"
+        android:textSize="@dimen/Title_4" />
+
+    <EditText
+        android:id="@+id/et_ssid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/input_wifi_name"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_50"
+        android:textSize="@dimen/Title_4" 
+        android:singleLine="true"
+        />
+
+    <EditText
+        android:id="@+id/et_pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/et_bg"
+        android:hint="@string/input_wifi_psw"
+        android:paddingBottom="15dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black_50"
+        android:textSize="@dimen/Title_4" 
+        android:singleLine="true"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="@dimen/activity_margin"
+        android:layout_marginRight="@dimen/activity_margin"
+        android:background="@drawable/long_btn_bg"
+        android:paddingBottom="13dp"
+        android:paddingTop="13dp"
+        android:text="@string/pair_wifi"
+        android:textColor="@color/white"
+        android:textSize="@dimen/Title_1" />
+
+</LinearLayout>
