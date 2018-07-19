@@ -153,6 +153,8 @@ public class MainActivity extends Activity implements OnClickListener{
 					Toast.makeText(this, R.string.hint_port, Toast.LENGTH_SHORT).show();
 					return;
 				}
+				
+				port = Integer.valueOf(strPort);
 			}
 			
 			if(!NetUtils.isWifiConnected(this)){
@@ -168,7 +170,6 @@ public class MainActivity extends Activity implements OnClickListener{
 				return;
 			}
 			
-			port = Integer.valueOf(strPort);
 			loadingDialog.show();
 			wifiConfigHelper.apWiFiConfig(deviceType, address, port, ssid, pwd, callback);
 		}

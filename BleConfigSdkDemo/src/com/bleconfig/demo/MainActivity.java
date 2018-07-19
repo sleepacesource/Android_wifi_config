@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private ImageView ivBack;
 	private View vDeviceId;
 	private TextView tvTitle, tvDeviceId;
-	private EditText etSsid, etPwd;
+	private EditText etAddress, etPort, etSsid, etPwd;
 	private Button btnConfig;
 	private WiFiConfigHelper wifiConfigHelper;
 	
@@ -60,6 +60,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvTitle = (TextView) findViewById(R.id.tv_title);
 		vDeviceId = findViewById(R.id.layout_deviceid);
 		tvDeviceId = (TextView) findViewById(R.id.tv_deviceid);
+		etAddress = (EditText) findViewById(R.id.et_address);
+		etPort = (EditText) findViewById(R.id.et_port);
 		etSsid = (EditText) findViewById(R.id.et_ssid);
 		etPwd = (EditText) findViewById(R.id.et_pwd);
 		btnConfig = (Button) findViewById(R.id.btn_config);
@@ -81,6 +83,11 @@ public class MainActivity extends Activity implements OnClickListener{
 //		etSsid.setText("medica_supper");
 //		etPwd.setText("11221122");
 		
+		etAddress.setText(ip);
+		etAddress.setSelection(etAddress.length());
+		etPort.setText(String.valueOf(port));
+		etPort.setSelection(etPort.length());
+		
 		loadingDialog = new ProgressDialog(this);
 		loadingDialog.setCancelable(false);
 		loadingDialog.setCanceledOnTouchOutside(false);
@@ -100,6 +107,20 @@ public class MainActivity extends Activity implements OnClickListener{
 				return;
 			}
 			
+			ip = etAddress.getText().toString();
+			String strPort = etPort.getText().toString();
+			
+			if(TextUtils.isEmpty(ip)){
+				Toast.makeText(this, R.string.hint_ip, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			if(TextUtils.isEmpty(strPort)){
+				Toast.makeText(this, R.string.hint_port, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			port = Integer.valueOf(strPort);
 			String ssid = etSsid.getText().toString();
 			String pwd = etPwd.getText().toString();
 			if(TextUtils.isEmpty(ssid)){
