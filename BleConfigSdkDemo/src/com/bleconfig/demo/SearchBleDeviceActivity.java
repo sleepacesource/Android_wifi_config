@@ -187,7 +187,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		            	ble.setAddress(device.getAddress());
 		            	ble.setDeviceName(deviceName);
 		            	ble.setDeviceId(deviceName);
-		            	ble.setDeviceType(DeviceType.DEVICE_TYPE_Z3);
+		            	ble.setDeviceType(getDeviceTypeByName(deviceName));
 		            	adapter.addBleDevice(ble);
 		            }
 				}
@@ -195,10 +195,34 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		}
 	};
 	
+	private DeviceType getDeviceTypeByName(String deviceName) {
+		if(checkRestOnZ300(deviceName)) {
+			return DeviceType.DEVICE_TYPE_Z3;
+		}else if(checkEWW(deviceName)) {
+			return DeviceType.DEVICE_TYPE_EW_W;
+		}else if(checkNoxSAW(deviceName)) {
+			return DeviceType.DEVICE_TYPE_NOX_SAW;
+		}
+		return null;
+	}
 	
 	private boolean checkRestOnZ300(String deviceName) {
         if (deviceName == null) return false;
         Pattern p = Pattern.compile("^(Z3)[0-9a-zA-Z]{10}$");
+        Matcher m = p.matcher(deviceName);
+        return m.matches();
+    }
+	
+	private boolean checkEWW(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(EW1W)[0-9a-zA-Z]{9}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	private static boolean checkNoxSAW(String deviceName) {
+        if (deviceName == null) return false;
+        Pattern p = Pattern.compile("^(SA11)[0-9a-zA-Z]{9}$");
         Matcher m = p.matcher(deviceName);
         return m.matches();
     }

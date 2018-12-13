@@ -2,9 +2,9 @@ package com.bleconfig.demo;
 
 
 import com.sleepace.sdk.domain.BleDevice;
-import com.sleepace.sdk.interfs.IResultCallBack;
+import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
-import com.sleepace.sdk.util.LogUtil;
+import com.sleepace.sdk.util.SdkLog;
 import com.sleepace.sdk.wificonfig.WiFiConfigHelper;
 
 import android.app.Activity;
@@ -47,6 +47,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		SdkLog.setLogEnable(true);
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
 		findView();
 		initListener();
@@ -79,9 +80,9 @@ public class MainActivity extends Activity implements OnClickListener{
 	private void initUI() {
 		// TODO Auto-generated method stub
 		ivBack.setVisibility(View.GONE);
-		tvTitle.setText(R.string.device_name_z300);
-//		etSsid.setText("medica_supper");
-//		etPwd.setText("11221122");
+		tvTitle.setText(R.string.demo_name_ble_wifi);
+		etSsid.setText("medica_1");
+		etPwd.setText("11221122");
 		
 		etAddress.setText(ip);
 		etAddress.setSelection(etAddress.length());
@@ -104,6 +105,10 @@ public class MainActivity extends Activity implements OnClickListener{
 			
 			if(TextUtils.isEmpty(tvDeviceId.getText())){
 				Toast.makeText(this, R.string.select_device, Toast.LENGTH_SHORT).show();
+				return;
+			}
+			
+			if(device == null || device.getDeviceType() == null){
 				return;
 			}
 			
@@ -144,7 +149,7 @@ public class MainActivity extends Activity implements OnClickListener{
     }
 	
 	
-	private IResultCallBack callback = new IResultCallBack() {
+	private IResultCallback callback = new IResultCallback() {
 		@Override
 		public void onResultCallback(final CallbackData cd) {
 			// TODO Auto-generated method stub
@@ -155,7 +160,7 @@ public class MainActivity extends Activity implements OnClickListener{
 					if(!isActivityAlive(MainActivity.this)){
 						return;
 					}
-					LogUtil.log(TAG+" callback " + cd);
+					SdkLog.log(TAG+" callback " + cd);
 					loadingDialog.dismiss();
 					showConfigResult(MainActivity.this, cd.isSuccess());
 					
