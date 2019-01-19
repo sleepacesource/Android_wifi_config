@@ -2,9 +2,9 @@ package com.apconfig.demo;
 
 
 import com.sleepace.sdk.constant.StatusCode;
-import com.sleepace.sdk.interfs.IResultCallBack;
+import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
-import com.sleepace.sdk.util.LogUtil;
+import com.sleepace.sdk.util.SdkLog;
 import com.sleepace.sdk.wificonfig.NetUtils;
 import com.sleepace.sdk.wificonfig.WiFiConfigHelper;
 
@@ -160,7 +160,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			if(!NetUtils.isWifiConnected(this)){
 				//Toast.makeText(this, R.string.reminder_connect_hotspot2, Toast.LENGTH_SHORT).show();
 				CallbackData cd = new CallbackData();
-				cd.setStatus(StatusCode.STATUS_DISCONNECT);
+				cd.setStatus(StatusCode.DISCONNECT);
 				showConfigResult(MainActivity.this, cd);
 				return;
 			}
@@ -175,7 +175,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		}
 	}
 	
-	private IResultCallBack callback = new IResultCallBack() {
+	private IResultCallback callback = new IResultCallback() {
 		@Override
 		public void onResultCallback(final CallbackData cd) {
 			// TODO Auto-generated method stub
@@ -186,7 +186,7 @@ public class MainActivity extends Activity implements OnClickListener{
 					if(!isActivityAlive(MainActivity.this)){
 						return;
 					}
-					LogUtil.log(TAG+" callback " + cd);
+					SdkLog.log(TAG+" callback " + cd);
 					loadingDialog.dismiss();
 					showConfigResult(MainActivity.this, cd);
 					/*if(cd.isSuccess()){
@@ -289,7 +289,7 @@ public class MainActivity extends Activity implements OnClickListener{
         if(cd.isSuccess()){
         	msgRes = R.string.reminder_configuration_success;
         }else{
-        	if(cd.getStatus() == StatusCode.STATUS_DISCONNECT){
+        	if(cd.getStatus() == StatusCode.DISCONNECT){
         		msgRes = R.string.reminder_connect_hotspot2;
         	}else{
         		msgRes = R.string.reminder_configuration_fail;

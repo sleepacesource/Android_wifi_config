@@ -15,7 +15,7 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/demo_name_ble_wifi"
-        android:theme="@style/AppTheme" 
+        android:theme="@android:style/Theme.Black.NoTitleBar" 
         >
         
          <activity
