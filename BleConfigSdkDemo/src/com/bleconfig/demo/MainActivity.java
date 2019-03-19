@@ -103,6 +103,8 @@ public class MainActivity extends Activity implements OnClickListener{
 			startActivityForResult(intent, 100);
 		}else if(v == btnConfig){
 			
+			SdkLog.log(TAG+" onClick dType:" + device.getDeviceType());
+			
 			if(TextUtils.isEmpty(tvDeviceId.getText())){
 				Toast.makeText(this, R.string.select_device, Toast.LENGTH_SHORT).show();
 				return;
@@ -146,6 +148,7 @@ public class MainActivity extends Activity implements OnClickListener{
             device = (BleDevice) data.getSerializableExtra(EXTRA_DEVICE);
             tvDeviceId.setText(device.getDeviceName());
         }
+        SdkLog.log(TAG+" onActivityResult req:" + requestCode+",res:" + resultCode+",d:" + device);
     }
 	
 	

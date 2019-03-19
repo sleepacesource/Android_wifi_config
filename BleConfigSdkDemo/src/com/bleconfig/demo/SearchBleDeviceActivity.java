@@ -208,7 +208,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	
 	private boolean checkRestOnZ300(String deviceName) {
         if (deviceName == null) return false;
-        Pattern p = Pattern.compile("^(Z3)[0-9a-zA-Z]{10}$");
+        Pattern p = Pattern.compile("^(Z3)[0-9a-zA-Z-]{11}$");
         Matcher m = p.matcher(deviceName);
         return m.matches();
     }
