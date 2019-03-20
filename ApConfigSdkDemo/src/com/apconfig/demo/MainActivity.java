@@ -53,6 +53,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
+		SdkLog.setLogEnable(true);
 		findView();
 		initListener();
 		initUI();
