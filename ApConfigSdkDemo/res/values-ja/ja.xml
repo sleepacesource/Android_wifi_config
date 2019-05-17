@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="demo_name_ble_wifi">BLEにはWi-Fiがついています</string>
+  <string name="demo_name_ap_wifi">sleepaceセットアップツール</string>
+  <string name="device_name_z300">RestOn Z300</string>
+  <string name="device_name_z400twb">RestOn Z400TWB</string>
+  <string name="device_name_z400twp">RestOn Z400TWP</string>
+  <string name="step1">STEP 1</string>
+  <string name="step2">STEP 2</string>
+  <string name="step3">STEP 3</string>
+  <string name="step4">STEP 4</string>
+  <string name="label_server_info">サーバー情報</string>
+  <string name="hint_ip">入力サーバIP</string>
+  <string name="hint_port">入力サーバポート</string>
+  <string name="hint_http">入力デバイスがアクセスするサーバHTTPアドレス</string>
+  <string name="select_device">デバイスIDを選択</string>
+  <string name="select_wifi">ネットワーク</string>
+  <string name="input_wifi_name">Wi-Fi名を入力</string>
+  <string name="input_wifi_psw">Wi-Fiパスワードを入力</string>
+  <string name="pair_wifi">次へ</string>
+  <string name="ap_mode">デバイス本体の緑ランプが点灯していることを確認</string>
+  <string name="reminder_connect_hotspot1">Wi-Fi設定に移動し、[RestONxxx]を選択します。
+接続したら本画面に戻ってください。
+※デバイス設定が完了まで、別のネットワークに切り替えないでください</string>
+  <string name="select_device_id">デバイスIDを選択する（できるだけデバイスに近づける）</string>
+  <string name="refresh_deviceid_list">見つけられませんでしたか？クリックして更新</string>
+  <string name="connect_device_fail">デバイスの接続に失敗しました</string>
+  <string name="reminder_connect_ble">携帯がBluetoothを開けたことを確保し、設備との距離は5メートルを超えないようにしてください。</string>
+  <string name="btn_ok">OK</string>
+  <string name="loading_pair_wifi">Wi-Fiを設定しています</string>
+  <string name="reminder_configuration_success">セットアップ完了</string>
+  <string name="reminder_configuration_fail">Wi-Fiの設定に失敗しました</string>
+  <string name="reminder_connect_wifi">まず携帯電話をWi-Fiに接続してください。</string>
+  <string name="reminder_connect_hotspot2">[RestONxxx] に接続していることを確認してください</string>
+</resources>
