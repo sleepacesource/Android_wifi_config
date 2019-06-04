@@ -8,7 +8,7 @@ public class BleDeviceNameUtil {
 		while (index < record.length) {
 			int len = record[index] & 0xFF;
 			int tp = record[index + 1] & 0xFF;
-			if (index + len + 1 > 31) {
+			if (index + len + 1 > 62) {
 				break;
 			} else if (len == 0) {
 				break;

@@ -102,9 +102,6 @@ public class MainActivity extends Activity implements OnClickListener{
 			Intent intent = new Intent(this, SearchBleDeviceActivity.class);
 			startActivityForResult(intent, 100);
 		}else if(v == btnConfig){
-			
-			SdkLog.log(TAG+" onClick dType:" + device.getDeviceType());
-			
 			if(TextUtils.isEmpty(tvDeviceId.getText())){
 				Toast.makeText(this, R.string.select_device, Toast.LENGTH_SHORT).show();
 				return;
