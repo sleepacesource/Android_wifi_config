@@ -204,6 +204,8 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 			return DeviceType.DEVICE_TYPE_NOX_SAW;
 		}else if(checkM600(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M600;
+		}else if(checkM800(deviceName)) {
+			return DeviceType.DEVICE_TYPE_M800;
 		}
 		return null;
 	}
@@ -218,6 +220,13 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	private boolean checkM600(String deviceName) {
 		if (deviceName == null) return false;
 		Pattern p = Pattern.compile("^(M6)[0-9a-zA-Z-]{11}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	private boolean checkM800(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(M800)[0-9a-zA-Z-]{9}$");
 		Matcher m = p.matcher(deviceName);
 		return m.matches();
 	}
