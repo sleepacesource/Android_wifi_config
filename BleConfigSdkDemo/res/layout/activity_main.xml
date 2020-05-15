@@ -156,6 +156,10 @@
         android:textColorHint="@color/black_50"
         android:textSize="@dimen/Title_4" 
         android:singleLine="true"
+        android:focusable="false"
+        android:drawablePadding="6dp"
+        android:drawableRight="@drawable/sdk_icon_rightarrow"
+        android:paddingRight="10dp"
         />
 
     <EditText

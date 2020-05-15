@@ -1,6 +1,7 @@
 package com.bleconfig.demo;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -9,6 +10,7 @@ import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IBleScanCallback;
 import com.sleepace.sdk.manager.DeviceType;
 import com.sleepace.sdk.manager.ble.BleHelper;
+import com.sleepace.sdk.util.SdkLog;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
@@ -180,8 +182,8 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		            	deviceName = deviceName.trim();
 		            }
 		            
-//		            LogUtil.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName);
-		            if(!TextUtils.isEmpty(modelName) && !TextUtils.isEmpty(deviceName) /*&& checkRestOnZ300(deviceName)*/){
+		            SdkLog.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName/*+",scanRecord:" + Arrays.toString(scanRecord)*/);
+		            if(/*!TextUtils.isEmpty(deviceName) &&*/ checkDeviceName(deviceName)){
 		            	BleDevice ble = new BleDevice();
 		            	ble.setModelName(modelName);
 		            	ble.setAddress(device.getAddress());
@@ -199,23 +201,63 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		if(checkRestOnZ300(deviceName)) {
 			return DeviceType.DEVICE_TYPE_Z3;
 		}else if(checkEWW(deviceName)) {
-			return DeviceType.DEVICE_TYPE_EW_W;
+			return DeviceType.DEVICE_TYPE_EWW;
 		}else if(checkNoxSAW(deviceName)) {
 			return DeviceType.DEVICE_TYPE_NOX_SAW;
 		}else if(checkM600(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M600;
 		}else if(checkM800(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M800;
+		}else if(checkBM8701(deviceName)) {
+			return DeviceType.DEVICE_TYPE_BM8701;
+		}else if(checkBM8701_2(deviceName)) {
+			return DeviceType.DEVICE_TYPE_BM8701_2;
+		}else if(checkM8701W(deviceName)) {
+			return DeviceType.DEVICE_TYPE_M8701W;
+		}else if(checkBG001A(deviceName)) {
+			return DeviceType.DEVICE_TYPE_BG001A;
+		}else if(checkSN913E(deviceName)) {
+			return DeviceType.DEVICE_TYPE_SN913E;
+		}else if(checkFH601W(deviceName)) {
+			return DeviceType.DEVICE_TYPE_FH601W;
 		}
 		return null;
 	}
 	
-	private boolean checkRestOnZ300(String deviceName) {
+	/**
+	 * 剔除设备名是乱码的设备
+	 * @param deviceName
+	 * @return
+	 */
+	private boolean checkDeviceName(String deviceName) {
         if (deviceName == null) return false;
-        Pattern p = Pattern.compile("^(Z3)[0-9a-zA-Z-]{11}$");
+        Pattern p = Pattern.compile("[0-9a-zA-Z-]+");
         Matcher m = p.matcher(deviceName);
         return m.matches();
     }
+	
+	private boolean checkRestOnZ300(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(Z3)[0-9a-zA-Z-]{11}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	private boolean checkBG001A(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p1 = Pattern.compile("^(GW001)[0-9a-zA-Z-]{8}$");
+		Matcher m1 = p1.matcher(deviceName);
+		Pattern p2 = Pattern.compile("^(BG01A)[0-9a-zA-Z-]{8}$");
+		Matcher m2 = p2.matcher(deviceName);
+		return m1.matches() || m2.matches();
+	}
+	
+	private boolean checkSN913E(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(SN91E)[0-9a-zA-Z-]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
 	
 	private boolean checkM600(String deviceName) {
 		if (deviceName == null) return false;
@@ -226,24 +268,52 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	
 	private boolean checkM800(String deviceName) {
 		if (deviceName == null) return false;
-		Pattern p = Pattern.compile("^(M800)[0-9a-zA-Z-]{9}$");
-		Matcher m = p.matcher(deviceName);
-		return m.matches();
+		Pattern p1 = Pattern.compile("^(M8)[0-9a-zA-Z-]{11}$");
+		Matcher m1 = p1.matcher(deviceName);
+		return m1.matches();
+	}
+	
+	private boolean checkBM8701(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p1 = Pattern.compile("^(BM871)[0-9a-zA-Z-]{8}$");
+		Matcher m1 = p1.matcher(deviceName);
+		return m1.matches();
+	}
+	
+	private boolean checkBM8701_2(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p1 = Pattern.compile("^(BM872)[0-9a-zA-Z-]{8}$");
+		Matcher m1 = p1.matcher(deviceName);
+		return m1.matches();
+	}
+	
+	private boolean checkM8701W(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p1 = Pattern.compile("^(M871W)[0-9a-zA-Z-]{8}$");
+		Matcher m1 = p1.matcher(deviceName);
+		return m1.matches();
 	}
 	
 	private boolean checkEWW(String deviceName) {
 		if (deviceName == null) return false;
-		Pattern p = Pattern.compile("^(EW1W)[0-9a-zA-Z]{9}$");
+		Pattern p = Pattern.compile("^(EW1W)[0-9a-zA-Z-]{9}$");
 		Matcher m = p.matcher(deviceName);
 		return m.matches();
 	}
 	
 	private static boolean checkNoxSAW(String deviceName) {
         if (deviceName == null) return false;
-        Pattern p = Pattern.compile("^(SA11)[0-9a-zA-Z]{9}$");
+        Pattern p = Pattern.compile("^(SA11)[0-9a-zA-Z-]{9}$");
         Matcher m = p.matcher(deviceName);
         return m.matches();
     }
+	
+	private static boolean checkFH601W(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(FH61W)[0-9a-zA-Z-]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
     
 
     class BleAdapter extends BaseAdapter {

@@ -1,37 +1,42 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bleconfig.demo"
-    android:versionCode="1"
-    android:versionName="1.0.0" >
+    android:versionCode="2"
+    android:versionName="2.0.0" >
 
     <uses-sdk
-        android:minSdkVersion="18"
-        android:targetSdkVersion="19" />
-    
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-	<uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
-	<uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/>
-    
+        android:minSdkVersion="21"
+        android:targetSdkVersion="26" />
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ <!-- 获取WIFI信息状态的权限 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+ <!-- 获取网络状态改变的权限 -->
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/demo_name_ble_wifi"
-        android:theme="@android:style/Theme.Black.NoTitleBar" 
-        >
-        
-         <activity
+        android:theme="@android:style/Theme.Black.NoTitleBar" >
+        <activity
             android:name="com.bleconfig.demo.MainActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-         <activity
+        <activity
             android:name="com.bleconfig.demo.SearchBleDeviceActivity"
-            android:screenOrientation="portrait"
-            />
-        
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

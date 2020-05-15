@@ -1,18 +1,35 @@
 package com.bleconfig.demo;
 
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.util.SdkLog;
 import com.sleepace.sdk.wificonfig.WiFiConfigHelper;
 
+import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -36,10 +53,20 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	public static final String EXTRA_DEVICE = "extra_device";
 	private BleDevice device;
-	private String ip = "120.24.169.204";
-	private int port = 9010;
+	private String ip;
+	private int port;
 	
 	private ProgressDialog loadingDialog;
+	
+	
+	private final int requestCode = 101;//权限请求码
+    private boolean hasPermissionDismiss = false;//有权限没有通过
+    private String dismissPermission = "";
+    private List<String> unauthoPersssions = new ArrayList<String>();
+    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION };
+    private byte[] ssidRaw;
+    private SharedPreferences mSetting;
+    private boolean granted = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +74,72 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
+		mSetting = getSharedPreferences("config", Context.MODE_PRIVATE);
 		SdkLog.setLogEnable(true);
+		
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
 		findView();
 		initListener();
 		initUI();
+		
+		checkPermissions();
 	}
+	
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		SdkLog.log(TAG+" onResume granted:" + granted);
+		if(granted) {
+			getSSID();
+		}
+	}
+	
+	private void checkPermissions() {
+		granted = false;
+		if(Build.VERSION.SDK_INT >= 23) {
+			unauthoPersssions.clear();
+			//逐个判断你要的权限是否已经通过
+			for (int i = 0; i < permissions.length; i++) {
+				if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
+					unauthoPersssions.add(permissions[i]);//添加还未授予的权限
+				}
+			}
+			//申请权限
+			if (unauthoPersssions.size() > 0) {//有权限没有通过，需要申请
+				ActivityCompat.requestPermissions(this, new String[]{unauthoPersssions.get(0)}, requestCode);
+			}else {
+				granted = true;
+			}
+		}else {
+			granted = true;
+		}
+    }
+	
+	@Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        hasPermissionDismiss = false;
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (this.requestCode == requestCode) {
+            for (int i = 0; i < grantResults.length; i++) {
+                if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                    hasPermissionDismiss = true;
+                    dismissPermission = permissions[i];
+                    if(!ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this, dismissPermission)) {
+                    	
+                    }
+                    break;
+                }
+            }
+
+            //如果有权限没有被允许
+            if (hasPermissionDismiss) {
+            	
+            }else{
+                checkPermissions();
+            }
+        }
+    }
 	
 	
 	private void findView() {
@@ -74,6 +161,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		tvTitle.setOnClickListener(this);
 		vDeviceId.setOnClickListener(this);
 		btnConfig.setOnClickListener(this);
+		etSsid.setOnClickListener(this);
 	}
 
 
@@ -81,13 +169,18 @@ public class MainActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		ivBack.setVisibility(View.GONE);
 		tvTitle.setText(R.string.demo_name_ble_wifi);
-		etSsid.setText("medica_1");
-		etPwd.setText("11221122");
+		etPwd.setText("");
+		//etPwd.setText("88888888");
+		etPwd.setSelection(etPwd.length());
+		etPwd.requestFocus();
+		
+		ip = mSetting.getString("ip", "120.24.68.136");
+		port = mSetting.getInt("port", 3010);
 		
 		etAddress.setText(ip);
 		etAddress.setSelection(etAddress.length());
 		etPort.setText(String.valueOf(port));
-		etPort.setSelection(etPort.length());
+//		etPort.setSelection(etPort.length());
 		
 		loadingDialog = new ProgressDialog(this);
 		loadingDialog.setCancelable(false);
@@ -96,9 +189,23 @@ public class MainActivity extends Activity implements OnClickListener{
 	}
 	
 	@Override
+	protected void onPause() {
+		// TODO Auto-generated method stub
+		super.onPause();
+		Editor editor = mSetting.edit();
+		editor.putString("ip", etAddress.getText().toString().trim());
+		editor.putInt("port", Integer.valueOf(etPort.getText().toString().trim()));
+		editor.commit();
+	}
+	
+	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if(v == vDeviceId){
+		if(v == etSsid) {
+			Intent intent = new Intent();
+			intent.setAction("android.net.wifi.PICK_WIFI_NETWORK");
+			startActivity(intent);
+		}else if(v == vDeviceId){
 			Intent intent = new Intent(this, SearchBleDeviceActivity.class);
 			startActivityForResult(intent, 100);
 		}else if(v == btnConfig){
@@ -108,6 +215,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 			
 			if(device == null || device.getDeviceType() == null){
+				SdkLog.log(TAG+" config device null");
 				return;
 			}
 			
@@ -133,7 +241,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 			
 			loadingDialog.show();
-			wifiConfigHelper.bleWiFiConfig(device.getDeviceType().getType(), device.getAddress(), ip, port, ssid, pwd, callback);
+			wifiConfigHelper.bleWiFiConfig(device.getDeviceType().getType(), device.getAddress(), ip, port, ssidRaw, pwd, callback);
 		}
 	}
 	
@@ -227,6 +335,59 @@ public class MainActivity extends Activity implements OnClickListener{
         dialog.setCancelable(false);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
+    }
+	
+	private void getSSID() {
+		String ssid = "";
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        if (wm != null) {
+            WifiInfo winfo = wm.getConnectionInfo();
+            if (winfo != null) {
+            	ssidRaw = getWifiSsidRawData(winfo);
+                ssid = winfo.getSSID();
+//                SdkLog.log(TAG+" getSSID 1:"+ssid);
+                if (!TextUtils.isEmpty(ssid)) {
+                	if(ssid.length() > 2 && ssid.charAt(0) == '"' && ssid.charAt(ssid.length() - 1) == '"') {
+                		ssid = ssid.substring(1, ssid.length() - 1);
+                	}
+                }else {
+                	if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                        ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+                        if(cm != null){
+                            NetworkInfo nInfo = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+                            if(nInfo != null){
+                                ssid = nInfo.getExtraInfo();
+//                                SdkLog.log(TAG+" getSSID 2:"+ssid);
+                                if(!TextUtils.isEmpty(ssid) && ssid.charAt(0) == '"' && ssid.charAt(ssid.length() - 1) == '"'){
+                                    ssid = ssid.substring(1, ssid.length() - 1);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        SdkLog.log(TAG+" getSSID:"+ssid);
+        etSsid.setText(ssid);
+    }
+	
+	private byte[] getWifiSsidRawData(WifiInfo wifiInfo) {
+        try {
+            Method method = wifiInfo.getClass().getMethod("getWifiSsid");
+            method.setAccessible(true);
+            Object wifiSsid = method.invoke(wifiInfo);
+            SdkLog.log(TAG+" getWifiSsidRawData wifiSsid:"+wifiSsid);
+            method = wifiSsid.getClass().getMethod("getOctets");
+            method.setAccessible(true);
+            byte[] rawSsid = (byte[]) method.invoke(wifiSsid);
+            SdkLog.log(TAG+" getWifiSsidRawData rawSsid:"+Arrays.toString(rawSsid));
+            return rawSsid;
+        } catch (Exception e) {
+            e.printStackTrace();
+            SdkLog.log(TAG+" getWifiSsidRawData err:"+e.getMessage());
+        }
+        return null;
     }
 
 }
