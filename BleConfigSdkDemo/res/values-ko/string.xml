@@ -24,7 +24,7 @@
   <string name="reminder_connect_ble">휴대폰의 블루투스 켜짐 상태확인후 설비와5m이내 거리 확보</string>
   <string name="btn_ok">확정</string>
   <string name="loading_pair_wifi">Wi-Fi설정중</string>
-  <string name="reminder_configuration_success">Wi-Fi 설정이 완료 되었습니다</string>
+  <string name="reminder_configuration_success">Wi-Fi 이름 및 비밀번호가 성공적으로 전송되었습니다</string>
   <string name="reminder_configuration_fail">Wi-Fi 설정이 실패 되었습니다</string>
   <string name="reminder_connect_wifi">우선 휴대폰을 Wi-Fi 연결해 주십시오</string>
   <string name="reminder_connect_hotspot2">휴대폰이 설비 핫스팟에 연결되었는지 확인해 주십시오</string>

@@ -24,7 +24,7 @@
   <string name="reminder_connect_ble">Make sure the distance between device and your phone is less than 16ft(5m) and turn on your Bluetooth</string>
   <string name="btn_ok">OK</string>
   <string name="loading_pair_wifi">WLAN Pairing …</string>
-  <string name="reminder_configuration_success">WLAN Configuration Successful!</string>
+  <string name="reminder_configuration_success">WLAN name and password sent successfully</string>
   <string name="reminder_configuration_fail">WLAN Pairing Failed</string>
   <string name="reminder_connect_wifi">Please Connect your phone to WLAN!</string>
   <string name="reminder_connect_hotspot2">Please check if your WLAN is connected successful</string>

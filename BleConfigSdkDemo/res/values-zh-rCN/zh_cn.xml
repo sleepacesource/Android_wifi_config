@@ -24,7 +24,7 @@
   <string name="reminder_connect_ble">确保手机已打开蓝牙，且与设备的距离不要超过5米</string>
   <string name="btn_ok">确定</string>
   <string name="loading_pair_wifi">正在配置Wi-Fi…</string>
-  <string name="reminder_configuration_success">Wi-Fi配置成功</string>
+  <string name="reminder_configuration_success">Wi-Fi名称和密码发送成功</string>
   <string name="reminder_configuration_fail">Wi-Fi配置失败</string>
   <string name="reminder_connect_wifi">请先将手机连接上Wi-Fi</string>
   <string name="reminder_connect_hotspot2">请检查你的手机是否成功连接设备热点</string>

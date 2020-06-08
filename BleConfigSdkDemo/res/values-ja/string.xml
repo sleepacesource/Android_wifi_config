@@ -24,7 +24,7 @@
   <string name="reminder_connect_ble">スマホは設備との距離は５M を超えないようにして、Bluetoothが開いたことを確認してください。</string>
   <string name="btn_ok">確定</string>
   <string name="loading_pair_wifi">WiFi配置中</string>
-  <string name="reminder_configuration_success">Wi-Fi設定が完了しました</string>
+  <string name="reminder_configuration_success">Wi-Fi名とパスワードが正常に送信されました</string>
   <string name="reminder_configuration_fail">WiFi配置失敗</string>
   <string name="reminder_connect_wifi">先にスマホをWiFiに接続してください</string>
   <string name="reminder_connect_hotspot2">スマホが設備ホットポイントに接続したかを確認してください</string>
