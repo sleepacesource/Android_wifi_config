@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
   <string name="demo_name_ble_wifi">BLE配Wi-Fi</string>
   <string name="demo_name_ap_wifi">AP配Wi-Fi</string>
@@ -12,7 +11,6 @@
   <string name="label_server_info">设备要连接的服务器信息</string>
   <string name="hint_ip">输入服务器IP</string>
   <string name="hint_port">输入服务器端口</string>
-  
   <string name="select_device">选择设备ID</string>
   <string name="select_wifi">设备要连接的Wi-Fi</string>
   <string name="input_wifi_name">输入Wi-Fi名称</string>

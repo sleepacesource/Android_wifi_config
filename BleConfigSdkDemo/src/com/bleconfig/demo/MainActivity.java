@@ -27,6 +27,7 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
@@ -46,7 +47,7 @@ public class MainActivity extends Activity implements OnClickListener{
 	private static final String TAG = MainActivity.class.getSimpleName();
 	private ImageView ivBack;
 	private View vDeviceId;
-	private TextView tvTitle, tvDeviceId;
+	private TextView tvTitle, tvDeviceId, tvVersion;
 	private EditText etAddress, etPort, etSsid, etPwd;
 	private Button btnConfig;
 	private WiFiConfigHelper wifiConfigHelper;
@@ -63,7 +64,7 @@ public class MainActivity extends Activity implements OnClickListener{
     private boolean hasPermissionDismiss = false;//有权限没有通过
     private String dismissPermission = "";
     private List<String> unauthoPersssions = new ArrayList<String>();
-    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION };
+    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE };
     private byte[] ssidRaw;
     private SharedPreferences mSetting;
     private boolean granted = false;
@@ -76,6 +77,9 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		mSetting = getSharedPreferences("config", Context.MODE_PRIVATE);
 		SdkLog.setLogEnable(true);
+		SdkLog.setSaveLog(true);
+		String dir = Environment.getExternalStorageDirectory()+"/BleConfigSdkDemo/Log";
+		SdkLog.setLogDir(dir);
 		
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
 		findView();
@@ -152,6 +156,7 @@ public class MainActivity extends Activity implements OnClickListener{
 		etPort = (EditText) findViewById(R.id.et_port);
 		etSsid = (EditText) findViewById(R.id.et_ssid);
 		etPwd = (EditText) findViewById(R.id.et_pwd);
+		tvVersion = (TextView) findViewById(R.id.tv_version);
 		btnConfig = (Button) findViewById(R.id.btn_config);
 	}
 
@@ -181,12 +186,24 @@ public class MainActivity extends Activity implements OnClickListener{
 		etAddress.setSelection(etAddress.length());
 		etPort.setText(String.valueOf(port));
 //		etPort.setSelection(etPort.length());
+		tvVersion.setText("V"+ getVersionName());
 		
 		loadingDialog = new ProgressDialog(this);
 		loadingDialog.setCancelable(false);
 		loadingDialog.setCanceledOnTouchOutside(false);
 		loadingDialog.setMessage(getString(R.string.loading_pair_wifi));
 	}
+	
+	private String getVersionName(){
+        String versionName = "";
+        try {
+        	versionName = getPackageManager()
+                     .getPackageInfo(getPackageName(),0).versionName;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return versionName;
+    }
 	
 	@Override
 	protected void onPause() {

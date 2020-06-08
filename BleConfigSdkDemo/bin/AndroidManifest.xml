@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bleconfig.demo"
-    android:versionCode="2"
+    android:versionCode="200"
     android:versionName="2.0.0" >
 
     <uses-sdk
@@ -19,6 +19,7 @@
  <!-- 获取WIFI信息状态的权限 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
  <!-- 获取网络状态改变的权限 -->
+ <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> 
 
     <application
         android:allowBackup="true"

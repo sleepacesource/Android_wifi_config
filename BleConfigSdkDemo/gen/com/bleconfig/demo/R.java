@@ -247,32 +247,33 @@ containing a value of this type.
         public static final int transparent=0x7f020021;
     }
     public static final class id {
-        public static final int bottom=0x7f070014;
-        public static final int btn_config=0x7f07000b;
+        public static final int bottom=0x7f070015;
+        public static final int btn_config=0x7f07000c;
         public static final int center=0x7f070001;
         public static final int et_address=0x7f070007;
         public static final int et_port=0x7f070008;
         public static final int et_pwd=0x7f07000a;
         public static final int et_ssid=0x7f070009;
-        public static final int iv_back=0x7f070017;
-        public static final int iv_refresh=0x7f07000f;
+        public static final int iv_back=0x7f070018;
+        public static final int iv_refresh=0x7f070010;
         public static final int layout_deviceid=0x7f070004;
-        public static final int layout_refresh=0x7f07000d;
+        public static final int layout_refresh=0x7f07000e;
         public static final int left=0x7f070002;
-        public static final int list=0x7f070010;
+        public static final int list=0x7f070011;
         public static final int right=0x7f070003;
-        public static final int tips=0x7f07000c;
-        public static final int top=0x7f070011;
-        public static final int tv_d1=0x7f070012;
-        public static final int tv_d2=0x7f070013;
+        public static final int tips=0x7f07000d;
+        public static final int top=0x7f070012;
+        public static final int tv_d1=0x7f070013;
+        public static final int tv_d2=0x7f070014;
         public static final int tv_deviceid=0x7f070005;
         public static final int tv_label_step3=0x7f070006;
         public static final int tv_log=0x7f070000;
-        public static final int tv_name=0x7f070019;
-        public static final int tv_refresh=0x7f07000e;
-        public static final int tv_title=0x7f070018;
-        public static final int warn_bt=0x7f070016;
-        public static final int warn_tips=0x7f070015;
+        public static final int tv_name=0x7f07001a;
+        public static final int tv_refresh=0x7f07000f;
+        public static final int tv_title=0x7f070019;
+        public static final int tv_version=0x7f07000b;
+        public static final int warn_bt=0x7f070017;
+        public static final int warn_tips=0x7f070016;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

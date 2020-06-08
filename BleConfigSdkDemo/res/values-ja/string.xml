@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="demo_name_ble_wifi">BLE/Wi-Fi 接続ツール</string>
+  <string name="demo_name_ap_wifi">AP/WiFi接続ツール</string>
+  <string name="device_name_z300">RestOn Z300</string>
+  <string name="device_name_z400twb">RestOn Z400TWB</string>
+  <string name="device_name_z400twp">RestOn Z400TWP</string>
+  <string name="step1">ステップ1</string>
+  <string name="step2">ステップ2</string>
+  <string name="step3">ステップ3</string>
+  <string name="label_server_info">納入元から提示された接続先IPアドレスとポート番号を入力して下さい</string>
+  <string name="hint_ip">サーバーのIPアドレスを入力して下さい</string>
+  <string name="hint_port">サーバーのポート番号を入力して下さい</string>
+  <string name="select_device">IDを選択してください</string>
+  <string name="select_wifi">を接続するWi-Fiアクセスポイント(SSID)とパスワードを入力して下さい</string>
+  <string name="input_wifi_name">アクセスポイント(SSID)を入力して下さい</string>
+  <string name="input_wifi_psw">ワードを入力して下さい</string>
+  <string name="pair_wifi">Wi-Fi設定を実行する</string>
+  <string name="ap_mode">設備を操作して、APモードに入ってください</string>
+  <string name="reminder_connect_hotspot1">システムのWiFiページにて設備接続した後に、このページ戻ります。</string>
+  <string name="select_device_id">設備IDを選択してください（スマホをできるだけ設備に近づけるように）</string>
+  <string name="refresh_deviceid_list">見つからないか？リフレッシュをタップして下さい</string>
+  <string name="connect_device_fail">設備接続失敗</string>
+  <string name="reminder_connect_ble">スマホは設備との距離は５M を超えないようにして、Bluetoothが開いたことを確認してください。</string>
+  <string name="btn_ok">確定</string>
+  <string name="loading_pair_wifi">WiFi配置中</string>
+  <string name="reminder_configuration_success">Wi-Fi設定が完了しました</string>
+  <string name="reminder_configuration_fail">WiFi配置失敗</string>
+  <string name="reminder_connect_wifi">先にスマホをWiFiに接続してください</string>
+  <string name="reminder_connect_hotspot2">スマホが設備ホットポイントに接続したかを確認してください</string>
+  <string name="search_device">ID検索</string>
+  <string name="refreshing">検索中</string>
+  <string name="device_id">設備ID</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

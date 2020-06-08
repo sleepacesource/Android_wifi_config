@@ -17,7 +17,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -182,7 +181,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		            	deviceName = deviceName.trim();
 		            }
 		            
-		            SdkLog.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName/*+",scanRecord:" + Arrays.toString(scanRecord)*/);
+		            SdkLog.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName+",scanRecord:" + Arrays.toString(scanRecord));
 		            if(/*!TextUtils.isEmpty(deviceName) &&*/ checkDeviceName(deviceName)){
 		            	BleDevice ble = new BleDevice();
 		            	ble.setModelName(modelName);
@@ -200,8 +199,10 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	private DeviceType getDeviceTypeByName(String deviceName) {
 		if(checkRestOnZ300(deviceName)) {
 			return DeviceType.DEVICE_TYPE_Z3;
-		}else if(checkEWW(deviceName)) {
-			return DeviceType.DEVICE_TYPE_EWW;
+		}else if(checkEW201W(deviceName)) {
+			return DeviceType.DEVICE_TYPE_EW201W;
+		}else if(checkEW202W(deviceName)) {
+			return DeviceType.DEVICE_TYPE_EW202W;
 		}else if(checkNoxSAW(deviceName)) {
 			return DeviceType.DEVICE_TYPE_NOX_SAW;
 		}else if(checkM600(deviceName)) {
@@ -220,6 +221,8 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 			return DeviceType.DEVICE_TYPE_SN913E;
 		}else if(checkFH601W(deviceName)) {
 			return DeviceType.DEVICE_TYPE_FH601W;
+		}else if(checkNox2W(deviceName)) {
+			return DeviceType.DEVICE_TYPE_NOX_2W;
 		}
 		return null;
 	}
@@ -294,9 +297,16 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		return m1.matches();
 	}
 	
-	private boolean checkEWW(String deviceName) {
+	private boolean checkEW201W(String deviceName) {
 		if (deviceName == null) return false;
 		Pattern p = Pattern.compile("^(EW1W)[0-9a-zA-Z-]{9}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	private boolean checkEW202W(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(EW22W)[0-9a-zA-Z-]{8}$");
 		Matcher m = p.matcher(deviceName);
 		return m.matches();
 	}
@@ -315,6 +325,13 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		return m.matches();
 	}
     
+	public static boolean checkNox2W(String deviceName) {
+        if (deviceName == null) return false;
+        Pattern p = Pattern.compile("^(SN22)[0-9a-zA-Z-]{9}$");
+        Matcher m = p.matcher(deviceName);
+        return m.matches();
+    }
+	
 
     class BleAdapter extends BaseAdapter {
         private List<BleDevice> list = new ArrayList<BleDevice>();
