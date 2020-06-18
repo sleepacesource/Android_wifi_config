@@ -5,7 +5,6 @@ import com.sleepace.sdk.constant.StatusCode;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.util.SdkLog;
-import com.sleepace.sdk.wificonfig.NetUtils;
 import com.sleepace.sdk.wificonfig.WiFiConfigHelper;
 
 import android.app.Activity;
@@ -37,8 +36,8 @@ public class MainActivity extends Activity implements OnClickListener{
 	public static final short DEVICE_TYPE_Z4TWP = 27;
 	private short deviceType = DEVICE_TYPE_Z4TWB;
 	
-	private static final String SERVER_IP = "120.24.169.204";
-	private static final int SERVER_PORT = 9010;
+	private static final String SERVER_IP = "172.14.0.111";
+	private static final int SERVER_PORT = 29010;
 	private static final String HTTP_URL = "https://webapi.test.sleepace.net";
 	
 	private String address;
@@ -83,8 +82,8 @@ public class MainActivity extends Activity implements OnClickListener{
 		// TODO Auto-generated method stub
 		initTitle(deviceType, false);
 		initConfig(deviceType);
-//		etSsid.setText("medica_supper");
-//		etPwd.setText("11221122");
+		etSsid.setText("xie_xie_long");
+		etPwd.setText("88888888");
 		
 		loadingDialog = new ProgressDialog(this);
 		loadingDialog.setCancelable(false);
@@ -158,13 +157,13 @@ public class MainActivity extends Activity implements OnClickListener{
 				port = Integer.valueOf(strPort);
 			}
 			
-			if(!NetUtils.isWifiConnected(this)){
-				//Toast.makeText(this, R.string.reminder_connect_hotspot2, Toast.LENGTH_SHORT).show();
-				CallbackData cd = new CallbackData();
-				cd.setStatus(StatusCode.DISCONNECT);
-				showConfigResult(MainActivity.this, cd);
-				return;
-			}
+//			if(!NetUtils.isWifiConnected(this)){
+//				//Toast.makeText(this, R.string.reminder_connect_hotspot2, Toast.LENGTH_SHORT).show();
+//				CallbackData cd = new CallbackData();
+//				cd.setStatus(StatusCode.DISCONNECT);
+//				showConfigResult(MainActivity.this, cd);
+//				return;
+//			}
 			
 			if(TextUtils.isEmpty(ssid)){
 				Toast.makeText(this, R.string.input_wifi_name, Toast.LENGTH_SHORT).show();
@@ -172,7 +171,7 @@ public class MainActivity extends Activity implements OnClickListener{
 			}
 			
 			loadingDialog.show();
-			wifiConfigHelper.apWiFiConfig(deviceType, address, port, ssid, pwd, callback);
+			wifiConfigHelper.apWiFiConfig(deviceType, address, port, ssid.getBytes(), pwd, callback);
 		}
 	}
 	
