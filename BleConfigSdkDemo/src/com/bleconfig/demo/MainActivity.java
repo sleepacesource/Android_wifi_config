@@ -64,7 +64,7 @@ public class MainActivity extends Activity implements OnClickListener{
     private boolean hasPermissionDismiss = false;//有权限没有通过
     private String dismissPermission = "";
     private List<String> unauthoPersssions = new ArrayList<String>();
-    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION/*, Manifest.permission.WRITE_EXTERNAL_STORAGE*/ };
     private byte[] ssidRaw;
     private SharedPreferences mSetting;
     private boolean granted = false;
@@ -179,8 +179,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		etPwd.setSelection(etPwd.length());
 		etPwd.requestFocus();
 		
-		ip = mSetting.getString("ip", "120.24.68.136");
-		port = mSetting.getInt("port", 3010);
+//		ip = mSetting.getString("ip", "120.24.68.136");
+//		port = mSetting.getInt("port", 3010);
+		
+		ip = mSetting.getString("ip", "172.14.1.100");
+		port = mSetting.getInt("port", 29020);
 		
 		etAddress.setText(ip);
 		etAddress.setSelection(etAddress.length());

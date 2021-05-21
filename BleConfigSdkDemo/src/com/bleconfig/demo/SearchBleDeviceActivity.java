@@ -217,12 +217,16 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 			return DeviceType.DEVICE_TYPE_M8701W;
 		}else if(checkBG001A(deviceName)) {
 			return DeviceType.DEVICE_TYPE_BG001A;
+		}else if(checkBG002(deviceName)) {
+			return DeviceType.DEVICE_TYPE_BG002;
 		}else if(checkSN913E(deviceName)) {
 			return DeviceType.DEVICE_TYPE_SN913E;
 		}else if(checkFH601W(deviceName)) {
 			return DeviceType.DEVICE_TYPE_FH601W;
 		}else if(checkNox2W(deviceName)) {
 			return DeviceType.DEVICE_TYPE_NOX_2W;
+		}else if(checkZ400TWP3(deviceName)) {
+			return DeviceType.DEVICE_TYPE_Z400TWP_3;
 		}
 		return null;
 	}
@@ -246,6 +250,13 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		return m.matches();
 	}
 	
+	private boolean checkZ400TWP3(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(ZTW3)[0-9a-zA-Z]{9}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
 	private boolean checkBG001A(String deviceName) {
 		if (deviceName == null) return false;
 		Pattern p1 = Pattern.compile("^(GW001)[0-9a-zA-Z-]{8}$");
@@ -253,6 +264,13 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		Pattern p2 = Pattern.compile("^(BG01A)[0-9a-zA-Z-]{8}$");
 		Matcher m2 = p2.matcher(deviceName);
 		return m1.matches() || m2.matches();
+	}
+	
+	private boolean checkBG002(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p1 = Pattern.compile("^(BG02)[0-9a-zA-Z-]{9}$");
+		Matcher m1 = p1.matcher(deviceName);
+		return m1.matches();
 	}
 	
 	private boolean checkSN913E(String deviceName) {
