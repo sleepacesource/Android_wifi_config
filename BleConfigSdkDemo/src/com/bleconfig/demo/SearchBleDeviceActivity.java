@@ -227,6 +227,16 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 			return DeviceType.DEVICE_TYPE_NOX_2W;
 		}else if(checkZ400TWP3(deviceName)) {
 			return DeviceType.DEVICE_TYPE_Z400TWP_3;
+		}else if(checkSM100(deviceName)) {
+			return DeviceType.DEVICE_TYPE_SM100;
+		}else if(checkSM200(deviceName)) {
+			return DeviceType.DEVICE_TYPE_SM200;
+		}else if(checkSM300(deviceName)) {
+			return DeviceType.DEVICE_TYPE_SM300;
+		}else if(checkSDC10(deviceName)) {
+			return DeviceType.DEVICE_TYPE_SDC10;
+		}else if(checkM901L(deviceName)) {
+			return DeviceType.DEVICE_TYPE_M901L;
 		}
 		return null;
 	}
@@ -349,6 +359,41 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
         Matcher m = p.matcher(deviceName);
         return m.matches();
     }
+	
+	public static boolean checkSM100(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(SM100)[0-9a-zA-Z]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	public static boolean checkSM200(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(SM200)[0-9a-zA-Z]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	public static boolean checkSM300(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(SM300)[0-9a-zA-Z]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	public static boolean checkSDC10(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(SDC10)[0-9a-zA-Z]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
+	
+	public static boolean checkM901L(String deviceName) {
+		if (deviceName == null) return false;
+		Pattern p = Pattern.compile("^(M901L)[0-9a-zA-Z]{8}$");
+		Matcher m = p.matcher(deviceName);
+		return m.matches();
+	}
 	
 
     class BleAdapter extends BaseAdapter {

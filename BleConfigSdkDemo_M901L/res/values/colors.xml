@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="green">#00CC00</color>
+    <color name="red">#ff0000</color>
+    <color name="gray">#808080</color>
+    <color name="transparent">#00000000</color>
+
+    <!-- 透明度 百分比前缀#+下面透明度+COLOR
+    100% —————— FF
+    95% —————— F2
+    90% —————— E6
+    85% —————— D9
+    80% —————— CC
+    75% —————— BF
+    70% —————— B3
+    65% —————— A6
+    60% —————— 99
+    55% —————— 8C
+    50% —————— 80
+    45% —————— 73
+    40% —————— 66
+    35% —————— 59
+    30% —————— 4D
+    25% —————— 40
+    20% —————— 33
+    15% —————— 26
+    10% —————— 1A
+    5% —————— 0D
+    0% —————— 00
+    -->
+    <color name="white_10">#1affffff</color>
+    <color name="white_15">#26ffffff</color>
+    <color name="white_20">#33ffffff</color>
+    <color name="white_30">#4cffffff</color>
+    <color name="white_50">#7fFFFFFF</color> <!-- 白色 50%透明度 -->
+    <color name="white_60">#99ffffff</color>
+    <color name="white_70">#B3ffffff</color>
+    <color name="white_80">#ccffffff</color>
+    <color name="white_90">#E6ffffff</color>
+    <color name="white_94">#f0ffffff</color>
+
+    <color name="black_0">#00000000</color>
+    <color name="black_10">#1a000000</color>
+    <color name="black_15">#26000000</color>
+    <color name="black_20">#33000000</color>
+    <color name="black_30">#4c000000</color>
+    <color name="black_40">#66000000</color>
+    <color name="black_50">#7f000000</color>
+    <color name="black_60">#99000000</color>
+    <color name="black_80">#cc000000</color>
+    <color name="black_100">#ff000000</color>
+
+    <!-- 主要用于 按钮底边色描边色，标签栏图标颜色 -->
+    <color name="COLOR_1">#4283ff</color>
+
+    <!--主要用于 高亮文字，可点击文字，按钮文字-->
+    <color name="COLOR_2">#2a97fe</color>
+
+    <color name="COLOR_2_20">#332a97fe</color>
+    <color name="COLOR_2_50">#802a97fe</color>
+
+    <!--主要用于 标题文字，导航栏文字，列表文字，正文文字-->
+    <color name="COLOR_3">#263444</color>
+
+    <!--主要用于 正文文字，提示文字-->
+    <color name="COLOR_4">#8492a6</color>
+
+    <!--主要用于 分割线、不可点击提示文字、不可点击按钮背景色-->
+    <color name="COLOR_5">#e0e6ed</color>
+
+    <!--主要用于 成功提示底色-->
+    <color name="COLOR_6">#14cf67</color>
+
+    <!--主要用于 异常提醒底色-->
+    <color name="COLOR_7">#ff4949</color>
+
+    <!--主要用于 背景-->
+    <color name="COLOR_8">#f5f5fa</color>
+
+    <!--主要用于 白色-->
+    <color name="COLOR_9">#ffffff</color>
+
+    <color name="COLOR_10">#c3cbd6</color>
+    
+    <color name="pickerview_timebtn_nor">#057dff</color>
+    <color name="pickerview_timebtn_pre">#c2daf5</color>
+    <color name="pickerview_bg_topbar">#f5f5f5</color>
+    <color name="pickerview_topbar_title">#000000</color>
+    <color name="pickerview_wheelview_textcolor_out">#a8a8a8</color>
+    <color name="pickerview_wheelview_textcolor_center">#2a2a2a</color>
+    <color name="pickerview_wheelview_textcolor_divider">#d5d5d5</color>
+    <color name="btn_disable">#d6dadf</color>
+    
+    
+    
+    <color name="learn_normal_color">#7f04c979</color>
+    <color name="detail_wake">#02d27c</color>
+    <color name="detail_light">#0bdbff</color>
+    <color name="detail_in">#0ca6fc</color>
+    <color name="detail_deep">#1b68f6</color>
+    <color name="detail_wake_bg">#1002d27c</color>
+    <color name="detail_light_bg">#290bdbff</color>
+    <color name="detail_in_bg">#4C0ca6fc</color>
+    <color name="detail_deep_bg">#7F1b68f6</color>
+    <color name="graph_right_label_color">#0BDBFF</color>
+    <color name="learn_LOW_color">#7fe0845b</color>
+    <color name="wake">#01D37C</color>
+    <color name="ring_color">#99ffffff</color>
+    <color name="deep_sleep_50">#a01661F9</color>
+    <color name="rem_sleep_50">#a00CA5FC</color>
+    <color name="light_sleep_50">#a00BDBFF</color>
+    <color name="wake_50">#a001D37C</color>
+    <color name="monthring_super">#03C978</color>
+    <color name="monthring_good">#1A5EE2</color>
+    <color name="monthring_general">#E1D365</color>
+    <color name="monthring_bad">#E1825F</color>
+    <color name="monthring_super_50">#7f03C978</color>
+    <color name="monthring_good_50">#7f1A5EE2</color>
+    <color name="monthring_general_50">#7fE1D365</color>
+    <color name="monthring_bad_50">#7fE1825F</color>
+    
+    
+</resources>

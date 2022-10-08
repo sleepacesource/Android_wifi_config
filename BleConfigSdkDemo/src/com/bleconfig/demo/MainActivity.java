@@ -77,9 +77,10 @@ public class MainActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.activity_main);
 		mSetting = getSharedPreferences("config", Context.MODE_PRIVATE);
 		SdkLog.setLogEnable(true);
-		SdkLog.setSaveLog(true);
-		String dir = Environment.getExternalStorageDirectory()+"/BleConfigSdkDemo/Log";
+		
+		String dir = getExternalFilesDir(null) + "/Log";
 		SdkLog.setLogDir(dir);
+		SdkLog.setSaveLog(true);
 		
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
 		findView();

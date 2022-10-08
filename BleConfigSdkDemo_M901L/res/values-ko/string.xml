@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+  <string name="demo_name_ble_wifi">IP 구성</string>
+  <string name="demo_name_ap_wifi">AP/Wi-Fi배치</string>
+  <string name="device_name_z300">RestOn Z300</string>
+  <string name="device_name_z400twb">RestOn Z400TWB</string>
+  <string name="device_name_z400twp">RestOn Z400TWP</string>
+  <string name="step1">스텝1</string>
+  <string name="step2">스텝2</string>
+  <string name="step3">스텝3</string>
+  <string name="label_server_info">설비 접속 대상의  서버 정보</string>
+  <string name="hint_ip">서버의 IP 어드레스를 입력해 주십시오</string>
+  <string name="hint_port">서버의 포트 번호를 입력해 주십시오</string>
+  <string name="select_device">ID를 선택해 주십시오</string>
+  <string name="select_wifi">접속할 Wi-Fi</string>
+  <string name="input_wifi_name">Wi-Fi ID를 입력해 주십시오</string>
+  <string name="input_wifi_psw">Wi-Fi  패스워드를 입력해 주십시오</string>
+  <string name="pair_wifi">Wi-Fi 설정 실행</string>
+  <string name="ap_mode">AP 모드로 설정</string>
+  <string name="reminder_connect_hotspot1">시스템wi-fi접속 화면에서 설비 핫스팟연결후 다시 기존화면으로 원복</string>
+  <string name="select_device_id">Care-Top의 ID를 선택해 주십시오. (스마트폰을 Care-Top에 가까이 해 주십시오. )</string>
+  <string name="refresh_deviceid_list">검색이 되지않다면 refresh를 클릭</string>
+  <string name="connect_device_fail">설비 접속 실패</string>
+  <string name="reminder_connect_ble">휴대폰의 블루투스 켜짐 상태확인후 설비와5m이내 거리 확보</string>
+  <string name="btn_ok">확정</string>
+  <string name="loading_pair_wifi">Wi-Fi설정중</string>
+  <string name="reminder_configuration_success">Wi-Fi 이름 및 비밀번호가 성공적으로 전송되었습니다</string>
+  <string name="reminder_configuration_fail">Wi-Fi 설정이 실패 되었습니다</string>
+  <string name="reminder_connect_wifi">우선 휴대폰을 Wi-Fi 연결해 주십시오</string>
+  <string name="reminder_connect_hotspot2">휴대폰이 설비 핫스팟에 연결되었는지 확인해 주십시오</string>
+  <string name="search_device">ID 검색</string>
+  <string name="refreshing">리프레시 중</string>
+  <string name="device_id">설비 ID</string>
+  <string name="tips">이 도구는 M901L에만 사용 가능</string>
+    <string name="set_apn">设置APN</string>
+  <string name="tips_set_apn">SIM 카드가 정방향 카드인 경우 장치에 APN을 설정해야 합니다.</string>
+  <string name="tips_apn">SIM 카드 공급업체에 APN을 문의하십시오.</string>
+  <string name="apn">APN</string>
+  <string name="get">얻다</string>
+  <string name="set">설치</string>
+  <string name="hint_apn">APN을 입력하십시오.</string>
+  <string name="set_suc">설정 성공</string>
+  <string name="set_fail">설정 실패</string>
+  <string name="tips_waiting">잠시만요...</string>
+</resources>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
