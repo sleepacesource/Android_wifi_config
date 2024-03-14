@@ -10,8 +10,8 @@ import com.sleepace.sdk.domain.BleDevice;
 import com.sleepace.sdk.interfs.IResultCallback;
 import com.sleepace.sdk.manager.CallbackData;
 import com.sleepace.sdk.util.SdkLog;
+import com.sleepace.sdk.wificonfig.APNBean;
 import com.sleepace.sdk.wificonfig.WiFiConfigHelper;
-import com.sleepace.sdk.wificonfig.WiFiConfigHelper.APNBean;
 
 import android.Manifest;
 import android.app.Activity;

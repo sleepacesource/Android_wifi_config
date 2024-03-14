@@ -2,10 +2,10 @@ package com.bleconfig.demo;
 
 public class BleDeviceNameUtil {
 
-    public static String getBleDeviceName(int type, byte []record ) {
+    public static String getBleDeviceName(int type, byte[] record) {
 		byte[] data = null;
 		int index = 0;
-		while (index < record.length) {
+		while (index < (record.length - 1)) {
 			int len = record[index] & 0xFF;
 			int tp = record[index + 1] & 0xFF;
 			if (index + len + 1 > 62) {

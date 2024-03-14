@@ -59,15 +59,13 @@ public class MainActivity extends Activity implements OnClickListener{
 	
 	private ProgressDialog loadingDialog;
 	
-	
 	private final int requestCode = 101;//权限请求码
     private boolean hasPermissionDismiss = false;//有权限没有通过
     private String dismissPermission = "";
     private List<String> unauthoPersssions = new ArrayList<String>();
-    private String[] permissions = new String[] {Manifest.permission.ACCESS_FINE_LOCATION/*, Manifest.permission.WRITE_EXTERNAL_STORAGE*/ };
+    private List<String> permissions = new ArrayList<String>();
     private byte[] ssidRaw;
     private SharedPreferences mSetting;
-    private boolean granted = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,11 +74,14 @@ public class MainActivity extends Activity implements OnClickListener{
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_main);
 		mSetting = getSharedPreferences("config", Context.MODE_PRIVATE);
+		SdkLog.init(this);
 		SdkLog.setLogEnable(true);
-		
+		SdkLog.setSaveLog(true);
 		String dir = getExternalFilesDir(null) + "/Log";
 		SdkLog.setLogDir(dir);
-		SdkLog.setSaveLog(true);
+		CrashHandler.getInstance().init(this);
+		
+		
 		
 		wifiConfigHelper = WiFiConfigHelper.getInstance(this);
 		findView();
@@ -94,38 +95,38 @@ public class MainActivity extends Activity implements OnClickListener{
 	protected void onResume() {
 		// TODO Auto-generated method stub
 		super.onResume();
-		SdkLog.log(TAG+" onResume granted:" + granted);
-		if(granted) {
-			getSSID();
-		}
+		getSSID();
 	}
 	
 	private void checkPermissions() {
-		granted = false;
-		if(Build.VERSION.SDK_INT >= 23) {
-			unauthoPersssions.clear();
-			//逐个判断你要的权限是否已经通过
-			for (int i = 0; i < permissions.length; i++) {
-				if (ContextCompat.checkSelfPermission(this, permissions[i]) != PackageManager.PERMISSION_GRANTED) {
-					unauthoPersssions.add(permissions[i]);//添加还未授予的权限
-				}
-			}
-			//申请权限
-			if (unauthoPersssions.size() > 0) {//有权限没有通过，需要申请
-				ActivityCompat.requestPermissions(this, new String[]{unauthoPersssions.get(0)}, requestCode);
-			}else {
-				granted = true;
-			}
-		}else {
-			granted = true;
-		}
+		unauthoPersssions.clear();
+        permissions.clear();
+
+        if(Build.VERSION.SDK_INT >= 31){ //Android 12 API level 31
+            permissions.add(Manifest.permission.BLUETOOTH_SCAN);
+            permissions.add(Manifest.permission.BLUETOOTH_ADVERTISE);
+            permissions.add(Manifest.permission.BLUETOOTH_CONNECT);
+        }
+
+        permissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        //逐个判断你要的权限是否已经通过
+        for (int i = 0; i < permissions.size(); i++) {
+            if (ContextCompat.checkSelfPermission(this, permissions.get(i)) != PackageManager.PERMISSION_GRANTED) {
+                unauthoPersssions.add(permissions.get(i));//添加还未授予的权限
+            }
+        }
+
+        //申请权限
+        if (unauthoPersssions.size() > 0) {//有权限没有通过，需要申请
+            ActivityCompat.requestPermissions(this, new String[]{unauthoPersssions.get(0)}, requestCode);
+        }
     }
 	
 	@Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        hasPermissionDismiss = false;
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (this.requestCode == requestCode) {
+        	hasPermissionDismiss = false;
             for (int i = 0; i < grantResults.length; i++) {
                 if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
                     hasPermissionDismiss = true;
@@ -136,13 +137,7 @@ public class MainActivity extends Activity implements OnClickListener{
                     break;
                 }
             }
-
-            //如果有权限没有被允许
-            if (hasPermissionDismiss) {
-            	
-            }else{
-                checkPermissions();
-            }
+            checkPermissions();
         }
     }
 	
@@ -389,24 +384,26 @@ public class MainActivity extends Activity implements OnClickListener{
             }
         }
         
-        SdkLog.log(TAG+" getSSID:"+ssid);
+        SdkLog.log(TAG+" getSSID:"+ssid+",ssidRaw:" + Arrays.toString(ssidRaw));
         etSsid.setText(ssid);
     }
 	
 	private byte[] getWifiSsidRawData(WifiInfo wifiInfo) {
         try {
-            Method method = wifiInfo.getClass().getMethod("getWifiSsid");
-            method.setAccessible(true);
-            Object wifiSsid = method.invoke(wifiInfo);
-            SdkLog.log(TAG+" getWifiSsidRawData wifiSsid:"+wifiSsid);
-            method = wifiSsid.getClass().getMethod("getOctets");
-            method.setAccessible(true);
-            byte[] rawSsid = (byte[]) method.invoke(wifiSsid);
-            SdkLog.log(TAG+" getWifiSsidRawData rawSsid:"+Arrays.toString(rawSsid));
-            return rawSsid;
+        	if(wifiInfo != null) {
+        		Method method = wifiInfo.getClass().getMethod("getWifiSsid");
+        		method.setAccessible(true);
+        		Object wifiSsid = method.invoke(wifiInfo);
+//        		SdkLog.log(TAG+" getWifiSsidRawData wifiSsid:"+wifiSsid);
+        		method = wifiSsid.getClass().getMethod("getOctets");
+        		method.setAccessible(true);
+        		byte[] rawSsid = (byte[]) method.invoke(wifiSsid);
+//        		SdkLog.log(TAG+" getWifiSsidRawData rawSsid:"+Arrays.toString(rawSsid));
+        		return rawSsid;
+        	}
         } catch (Exception e) {
             e.printStackTrace();
-            SdkLog.log(TAG+" getWifiSsidRawData err:"+e.getMessage());
+//            SdkLog.log(TAG+" getWifiSsidRawData err:"+e.getMessage());
         }
         return null;
     }

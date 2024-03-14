@@ -176,12 +176,13 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 					if(modelName != null){
 						modelName = modelName.trim();
 					}
+					SdkLog.log(TAG+" onLeScan modelName:"+ modelName+",scanRecord:" + Arrays.toString(scanRecord));
 		            String deviceName = BleDeviceNameUtil.getBleDeviceName(0xff, scanRecord);
 		            if(deviceName != null){
 		            	deviceName = deviceName.trim();
 		            }
 		            
-		            SdkLog.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName+",scanRecord:" + Arrays.toString(scanRecord));
+		            SdkLog.log(TAG+" onLeScan deviceName:" + deviceName);
 		            if(/*!TextUtils.isEmpty(deviceName) &&*/ checkM901L(deviceName)){
 		            	BleDevice ble = new BleDevice();
 		            	ble.setModelName(modelName);
@@ -381,7 +382,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	
 	public static boolean checkM901L(String deviceName) {
 		if (deviceName == null) return false;
-		Pattern p = Pattern.compile("^(M901L)[0-9a-zA-Z]{8}$");
+		Pattern p = Pattern.compile("^(M9)[0-9a-zA-Z]{11}$");
 		Matcher m = p.matcher(deviceName);
 		return m.matches();
 	}

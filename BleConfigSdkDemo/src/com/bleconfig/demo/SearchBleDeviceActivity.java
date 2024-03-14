@@ -176,12 +176,12 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 					if(modelName != null){
 						modelName = modelName.trim();
 					}
+//					SdkLog.log(TAG+" onLeScan modelName:"+ modelName+",scanRecord:" + Arrays.toString(scanRecord));
 		            String deviceName = BleDeviceNameUtil.getBleDeviceName(0xff, scanRecord);
 		            if(deviceName != null){
 		            	deviceName = deviceName.trim();
 		            }
-		            
-		            SdkLog.log(TAG+" onLeScan modelName:" +modelName+",deviceName:" + deviceName+",scanRecord:" + Arrays.toString(scanRecord));
+		            SdkLog.log(TAG+" onLeScan deviceName:" + deviceName);
 		            if(/*!TextUtils.isEmpty(deviceName) &&*/ checkDeviceName(deviceName)){
 		            	BleDevice ble = new BleDevice();
 		            	ble.setModelName(modelName);
@@ -209,12 +209,12 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 			return DeviceType.DEVICE_TYPE_M600;
 		}else if(checkM800(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M800;
-		}else if(checkBM8701(deviceName)) {
-			return DeviceType.DEVICE_TYPE_BM8701;
 		}else if(checkBM8701_2(deviceName)) {
 			return DeviceType.DEVICE_TYPE_BM8701_2;
 		}else if(checkM8701W(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M8701W;
+		}else if(checkBM8701(deviceName)) {
+			return DeviceType.DEVICE_TYPE_BM8701;
 		}else if(checkBG001A(deviceName)) {
 			return DeviceType.DEVICE_TYPE_BG001A;
 		}else if(checkBG002(deviceName)) {
@@ -234,7 +234,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 		}else if(checkSM300(deviceName)) {
 			return DeviceType.DEVICE_TYPE_SM300;
 		}else if(checkSDC10(deviceName)) {
-			return DeviceType.DEVICE_TYPE_SDC10;
+			return DeviceType.DEVICE_TYPE_SDC100;
 		}else if(checkM901L(deviceName)) {
 			return DeviceType.DEVICE_TYPE_M901L;
 		}
@@ -306,7 +306,7 @@ public class SearchBleDeviceActivity extends Activity implements OnClickListener
 	
 	private boolean checkBM8701(String deviceName) {
 		if (deviceName == null) return false;
-		Pattern p1 = Pattern.compile("^(BM871)[0-9a-zA-Z-]{8}$");
+		Pattern p1 = Pattern.compile("^(BM)[0-9a-zA-Z-]{11}$");
 		Matcher m1 = p1.matcher(deviceName);
 		return m1.matches();
 	}
